@@ -24,8 +24,8 @@ set(CMAKE_BINARY_DIR        ${CMAKE_SOURCE_DIR}/build)
 set(EXECUTABLE_OUTPUT_PATH  ${CMAKE_SOURCE_DIR}/bin)
 
 # select project files
-file(GLOB_RECURSE archive_inc_files include/archive/ *.hpp)
-file(GLOB_RECURSE archive_src_files source/archive/  *.cpp)
+file(GLOB_RECURSE archive_inc_files include/ *.hpp)
+file(GLOB_RECURSE archive_src_files source/  *.cpp)
 
 # add source to project executable
 add_executable            (archive ${archive_src_files} ${archive_inc_files})
