@@ -1,0 +1,32 @@
+﻿# cmake project for archive-lang
+cmake_minimum_required(VERSION 3.29)
+project(archive)
+
+# ensure CMAKE_BUILD_TYPE is explicitly set to Release or Debug
+if (NOT CMAKE_BUILD_TYPE MATCHES "^(Release|Debug)$")
+        set(fatal_error_message "\nCMAKE_BUILD_TYPE must be set to 'Release' or 'Debug'.\n"
+                                " - Example: cmake [...] -DCMAKE_BUILD_TYPE=Release [...]\n"
+                                " - Example: cmake [...] -DCMAKE_BUILD_TYPE=Debug [...]\n")
+        message(FATAL_ERROR  ${fatal_error_message})
+endif()
+
+# enable hot reload for msvc compilers if supported
+if(POLICY CMP0141)
+    cmake_policy(SET CMP0141 NEW)
+endif()
+
+# config c++ compiler
+set(CMAKE_CXX_STANDARD   20)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
+# set artifact location
+set(CMAKE_BINARY_DIR        ${CMAKE_SOURCE_DIR}/build)
+set(EXECUTABLE_OUTPUT_PATH  ${CMAKE_SOURCE_DIR}/bin)
+
+# select project files
+file(GLOB_RECURSE archive_inc_files include/archive/ *.hpp)
+file(GLOB_RECURSE archive_src_files source/archive/  *.cpp)
+
+# add source to project executable
+add_executable            (archive ${archive_src_files} ${archive_inc_files})
+target_include_directories(archive PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)

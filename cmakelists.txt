@@ -1,0 +1,6 @@
+﻿# top-level cmake project file
+cmake_minimum_required(VERSION 3.29)
+
+# include sub-project
+project("archive")
+add_subdirectory("archive")
