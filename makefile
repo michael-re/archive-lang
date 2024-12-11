@@ -1,13 +1,5 @@
-error:
-	@echo ""
-	@echo " please choose one of the following targets:"
-	@echo "    - debug"
-	@echo "    - release"
-	@echo "    - clean"
-	@echo ""
-	@echo " eg: make debug"
-	@echo ""
-	@exit
+default:
+	make release
 
 release:
 	cmake -B build -S . -DCMAKE_BUILD_TYPE=Release
