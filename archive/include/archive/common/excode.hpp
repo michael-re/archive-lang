@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef ARCHIVE_COMMON_EXCODES_HPP
-#define ARCHIVE_COMMON_EXCODES_HPP
+#ifndef ARCHIVE_COMMON_EXCODE_HPP
+#define ARCHIVE_COMMON_EXCODE_HPP
 
 /**
  * @brief exit status codes for system programs (taken from `sysexits.h`)
@@ -30,4 +30,4 @@ namespace archive::exit_code
     inline constexpr auto config        = 78; //* configuration error
 } // namespace archive::exit_code
 
-#endif // ARCHIVE_COMMON_EXCODES_HPP
+#endif // ARCHIVE_COMMON_EXCODE_HPP

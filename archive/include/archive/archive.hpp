@@ -5,7 +5,9 @@
 
 // common
 #include "archive/common/alias.hpp"
+#include "archive/common/assert.hpp"
 #include "archive/common/except.hpp"
-#include "archive/common/excodes.hpp"
+#include "archive/common/excode.hpp"
+#include "archive/common/fatal.hpp"
 
 #endif // ARCHIVE_ARCHIVE_HPP
