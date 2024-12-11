@@ -5,5 +5,6 @@
 
 // common
 #include "archive/common/alias.hpp"
+#include "archive/common/excodes.hpp"
 
 #endif // ARCHIVE_ARCHIVE_HPP

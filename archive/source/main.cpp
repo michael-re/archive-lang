@@ -1,8 +1,6 @@
-#include <format>
-#include <iostream>
+#include "archive/archive.hpp"
 
-auto main() -> int
+auto main(const int, const char*[]) -> int
 {
-    std::cout << std::format("hello archive!\n");
-    return EXIT_FAILURE;
+    return archive::exit_code::success;
 }
