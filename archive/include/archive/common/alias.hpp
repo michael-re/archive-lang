@@ -3,11 +3,12 @@
 #ifndef ARCHIVE_COMMON_ALIAS_HPP
 #define ARCHIVE_COMMON_ALIAS_HPP
 
+#include <limits>
 #include <cstddef>
 #include <cstdint>
-#include <limits>
+#include <type_traits>
 
-namespace archive::alias::detail::type
+namespace archive::alias
 {
     using f32 = float;
     using f64 = double;
@@ -40,6 +41,6 @@ namespace archive::alias::detail::type
 
     static_assert(std::numeric_limits<f32>::is_iec559, "f32 must be IEEE 754 compliant");
     static_assert(std::numeric_limits<f64>::is_iec559, "f64 must be IEEE 754 compliant");
-} // namespace archive::alias::detail::type
+} // namespace archive::alias
 
 #endif // ARCHIVE_COMMON_ALIAS_HPP
