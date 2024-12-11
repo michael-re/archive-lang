@@ -10,4 +10,7 @@
 #include "archive/common/excode.hpp"
 #include "archive/common/fatal.hpp"
 
+// frontend
+#include "archive/frontend/location.hpp"
+
 #endif // ARCHIVE_ARCHIVE_HPP
