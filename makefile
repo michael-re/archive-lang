@@ -16,9 +16,10 @@ clean:
 help:
 	@echo ""
 	@echo " supported make recipes:"
-	@echo "    - default"
-	@echo "    - debug"
-	@echo "    - release"
-	@echo "    - clean"
+	@echo "     - default   Invokes 'make release'"
+	@echo "     - debug     Builds a debug version of the program"
+	@echo "     - release   Builds a release version of the program"
+	@echo "     - clean     Cleans up compiled binaries and build artifacts"
+	@echo "     - help      Lists all supported make recipes"
 	@echo ""
 	@exit
