@@ -50,8 +50,9 @@ namespace archive::frontend
         DoubleColon,        // ::
         Caret,              // ^
         Comma,              // ,
-        SingleDot,          // .
-        DoubleDot,          // ..
+        Dot,                // .
+        ClosedRange,        // ...
+        HalfRange,          // ..<
         SingleEqual,        // =
         DoubleEqual,        // ==
         SingleGreater,      // >
@@ -93,6 +94,7 @@ namespace archive::frontend
         Delete,
         Do,
         Else,
+        Enum,
         False,
         For,
         Fun,
