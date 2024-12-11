@@ -1,6 +1,6 @@
 ﻿# cmake project for archive-lang
 cmake_minimum_required(VERSION 3.29)
-project(archive)
+project(arc)
 
 # ensure CMAKE_BUILD_TYPE is explicitly set to Release or Debug
 if (NOT CMAKE_BUILD_TYPE MATCHES "^(Release|Debug)$")
@@ -96,6 +96,6 @@ file(GLOB_RECURSE archive_inc_files include/ *.hpp)
 file(GLOB_RECURSE archive_src_files source/  *.cpp)
 
 # add source to project executable
-add_executable            (archive ${archive_src_files} ${archive_inc_files})
-target_include_directories(archive PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
-target_compile_options    (archive PRIVATE ${compile_options})
+add_executable            (arc ${archive_src_files} ${archive_inc_files})
+target_include_directories(arc PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
+target_compile_options    (arc PRIVATE ${compile_options})

@@ -2,5 +2,5 @@
 cmake_minimum_required(VERSION 3.29)
 
 # include sub-project
-project("archive")
+project("arc")
 add_subdirectory("archive")

@@ -26,10 +26,10 @@ namespace archive::assert
             archive::assert::terminate(#expression, ##__VA_ARGS__); \
     } while (0)                                                     \
 
-#define FATAL(message)                        \
-    do                                        \
-    {                                         \
-        archive::Fatal(#message).terminate(); \
-    } while (0)                               \
+#define FATAL(message)                       \
+    do                                       \
+    {                                        \
+        archive::Fatal(message).terminate(); \
+    } while (0)                              \
 
 #endif // ARCHIVE_COMMON_ASSERT_HPP

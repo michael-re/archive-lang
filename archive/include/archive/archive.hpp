@@ -14,4 +14,9 @@
 #include "archive/frontend/location.hpp"
 #include "archive/frontend/token.hpp"
 
+namespace archive
+{
+    [[nodiscard]] auto run(const int argc, const char* argv[]) -> int;
+} // namespace archive
+
 #endif // ARCHIVE_ARCHIVE_HPP
