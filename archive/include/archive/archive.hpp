@@ -12,5 +12,6 @@
 
 // frontend
 #include "archive/frontend/location.hpp"
+#include "archive/frontend/token.hpp"
 
 #endif // ARCHIVE_ARCHIVE_HPP
