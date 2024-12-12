@@ -9,9 +9,11 @@
 #include "archive/common/except.hpp"
 #include "archive/common/excode.hpp"
 #include "archive/common/fatal.hpp"
+#include "archive/common/utility.hpp"
 
 // frontend
 #include "archive/frontend/location.hpp"
+#include "archive/frontend/source.hpp"
 #include "archive/frontend/token.hpp"
 
 namespace archive
