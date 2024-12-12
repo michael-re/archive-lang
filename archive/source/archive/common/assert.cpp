@@ -1,7 +1,6 @@
-#include <format>
-
 #include "archive/common/assert.hpp"
 #include "archive/common/excode.hpp"
+#include "archive/common/format.hpp"
 
 using namespace archive;
 using namespace archive::assert;
@@ -12,8 +11,8 @@ auto assert::error(const std::string_view     expression,
 {
     const auto reason = expression.empty() ? "(empty assert expression)" : expression;
     return message.empty()
-         ? Fatal(std::format("assertion failed: {}", reason), location)
-         : Fatal(std::format("assertion failed: {}\n\n{}", reason, message), location);
+         ? Fatal(fmt::to_string("assertion failed: {}", reason), location)
+         : Fatal(fmt::to_string("assertion failed: {}\n\n{}", reason, message), location);
 }
 
 auto assert::terminate(const std::string_view     expression,

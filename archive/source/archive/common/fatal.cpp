@@ -1,7 +1,5 @@
-#include <format>
-#include <iostream>
-
 #include "archive/common/fatal.hpp"
+#include "archive/common/format.hpp"
 #include "archive/common/excode.hpp"
 
 using namespace archive;
@@ -12,9 +10,9 @@ Fatal::Fatal(const std::string_view     message,
 {
     try
     {
-        auto formatted = std::format("fatal error: {}:{}:{}\n", location.file_name(), location.line(), location.column())
-                       + std::format(" * location: {}:{}\n",    location.line(), location.column())
-                       + std::format(" * function: {}",         location.function_name());
+        auto formatted = fmt::to_string("fatal error: {}:{}:{}\n", location.file_name(), location.line(), location.column())
+                       + fmt::to_string(" * location: {}:{}\n",    location.line(), location.column())
+                       + fmt::to_string(" * function: {}",         location.function_name());
 
         if (!message.empty())
         {
@@ -49,8 +47,7 @@ auto Fatal::location() const noexcept -> const std::source_location&
 
 auto Fatal::terminate() const noexcept -> void
 {
-    std::cerr << "\n==== archive fatal termination ====\n"
-              << this->message()
-              << "\n==== archive fatal termination ====\n\n";
+    static constexpr auto header = "==== archive fatal termination ====";
+    fmt::println(std::cerr, "\n{}\n{}\n{}\n", header, this->message(), header);
     std::exit(archive::exit_code::failure);
 }

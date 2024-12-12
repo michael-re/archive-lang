@@ -9,6 +9,7 @@
 #include "archive/common/except.hpp"
 #include "archive/common/excode.hpp"
 #include "archive/common/fatal.hpp"
+#include "archive/common/format.hpp"
 #include "archive/common/utility.hpp"
 
 // frontend
@@ -18,6 +19,7 @@
 
 namespace archive
 {
+    [[nodiscard]] auto run(std::string filename)               -> int;
     [[nodiscard]] auto run(const int argc, const char* argv[]) -> int;
 } // namespace archive
 
