@@ -10,7 +10,7 @@ if (NOT CMAKE_BUILD_TYPE MATCHES "^(Release|Debug)$")
         message(FATAL_ERROR  ${fatal_error_message})
 endif()
 
-# set compile options -- see: https://github.com/lefticus/cppbestpractices/blob/master/02-Use_the_Tools_Available.md
+# set compile options -- see: https://github.com/cpp-best-practices/cppbestpractices/blob/master/02-Use_the_Tools_Available.md
 set(msvc_compile_options
         /external:anglebrackets # treat files included with <> as external
         /external:W0            # turn off warnings from all external header files
