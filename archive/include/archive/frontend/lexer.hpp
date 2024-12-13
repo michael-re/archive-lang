@@ -11,7 +11,7 @@
 
 namespace archive::frontend
 {
-    class Lexer
+    class Lexer final
     {
     public:
         explicit Lexer(std::string filename, std::string source);

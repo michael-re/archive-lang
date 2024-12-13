@@ -8,7 +8,7 @@
 
 namespace archive::frontend
 {
-    class Scanner
+    class Scanner final
     {
     public:
         explicit Scanner(std::string filename, std::string source);
