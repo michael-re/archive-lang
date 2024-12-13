@@ -12,6 +12,10 @@
 #include "archive/common/format.hpp"
 #include "archive/common/utility.hpp"
 
+// ast
+#include "archive/ast/expr.hpp"
+#include "archive/ast/stmt.hpp"
+
 // frontend
 #include "archive/frontend/lexer.hpp"
 #include "archive/frontend/location.hpp"
