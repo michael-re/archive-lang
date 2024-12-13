@@ -21,8 +21,16 @@ auto archive::run(std::string filename) -> int
     }
 
     // TODO: implement parse -> resolve -> compile/interpret
-    auto buff = fmt::to_string(file.rdbuf());
-    FATAL(fmt::to_string("archive file '{}':\n{}", filename, buff));
+    auto scanner = frontend::Scanner(filename, fmt::to_string(file.rdbuf()));
+    auto token   = scanner.scan();
+
+    while (token != frontend::Token::Type::EndOfFile)
+    {
+        fmt::println(std::cout, "{}", token.lexeme());
+        token = scanner.scan();
+    }
+
+    return exit_code::success;
 }
 
 auto archive::run(const int argc, const char* argv[]) -> int
