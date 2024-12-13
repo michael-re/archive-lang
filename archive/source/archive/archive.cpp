@@ -9,34 +9,33 @@ auto archive::run(std::string filename) -> int
 {
     if (!std::filesystem::exists(filename))
     {
-        fmt::println(std::cerr, "\nerror: failed to find arc package: `{}`\n", filename);
+        fmt::println(std::cerr, "\nerror: failed to find archive file: `{}`\n", filename);
         return exit_code::io_error;
     }
 
     auto file = std::ifstream(filename, std::ifstream::binary | std::ifstream::in);
     if (!file.is_open())
     {
-        fmt::println(std::cerr, "\nerror: i/o error opening arc package: `{}`", filename);
+        fmt::println(std::cerr, "\nerror: i/o error opening archive file: `{}`", filename);
         return exit_code::io_error;
     }
 
     // TODO: implement parse -> resolve -> compile/interpret
     auto buff = fmt::to_string(file.rdbuf());
-    FATAL(fmt::to_string("arc package '{}':\n{}", filename, buff));
+    FATAL(fmt::to_string("archive file '{}':\n{}", filename, buff));
 }
 
 auto archive::run(const int argc, const char* argv[]) -> int
 {
     try
     {
-        switch (argc)
+        if (argc != 2)
         {
-            case 1: return run("arc.package"); // look in current directory for "arc.package"
-            case 2: return run(argv[1]);       // user supplied "arc.package"
-            default:                           // error: invalid args supplied to program
-                fmt::println(std::cerr, "\nusage: arc [../path/to/arc.package]\n");
-                return exit_code::usage;
+            fmt::println(std::cerr, "\nusage: ./arc <file>\n");
+            return exit_code::usage;
         }
+
+        return run(argv[1]);
     }
     catch (const Exception& e)
     {
