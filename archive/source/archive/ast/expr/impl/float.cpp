@@ -4,7 +4,8 @@ using namespace archive;
 using namespace archive::ast;
 
 FloatExpr::FloatExpr(Token literal)
-    : m_literal(std::move(literal))
+    : m_value  (0x0),
+      m_literal(std::move(literal))
 {
     FATAL("todo: validate float literal token");
 }
@@ -14,7 +15,7 @@ auto FloatExpr::token() const -> const Token&
     return m_literal;
 }
 
-auto FloatExpr::value() const -> const std::string&
+auto FloatExpr::value() const -> double
 {
-    return token().lexeme();
+    return m_value;
 }

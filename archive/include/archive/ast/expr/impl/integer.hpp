@@ -16,10 +16,11 @@ namespace archive::ast
     public:
         explicit IntegerExpr(Token token);
         [[nodiscard]] auto token() const -> const Token&;
-        [[nodiscard]] auto value() const -> const std::string&;
+        [[nodiscard]] auto value() const -> std::uint64_t;
 
     private:
-        Token m_literal;
+        std::uint64_t m_value;
+        Token         m_literal;
     };
 } // namespace archive::ast
 

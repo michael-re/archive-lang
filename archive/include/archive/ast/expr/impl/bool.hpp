@@ -19,6 +19,7 @@ namespace archive::ast
         [[nodiscard]] auto value() const -> bool;
 
     private:
+        bool  m_value;
         Token m_literal;
     };
 } // namespace archive::ast

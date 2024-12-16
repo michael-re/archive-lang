@@ -16,10 +16,11 @@ namespace archive::ast
     public:
         explicit FloatExpr(Token token);
         [[nodiscard]] auto token() const -> const Token&;
-        [[nodiscard]] auto value() const -> const std::string&;
+        [[nodiscard]] auto value() const -> double;
 
     private:
-        Token m_literal;
+        double m_value;
+        Token  m_literal;
     };
 } // namespace archive::ast
 
