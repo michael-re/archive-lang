@@ -38,9 +38,10 @@ namespace archive::ast
         explicit BaseVisitor() = default;
         virtual ~BaseVisitor() = default;
 
-        virtual auto visit(conditional<BinaryExpr>&) -> void = 0;
-        virtual auto visit(conditional<BoolExpr>&)   -> void = 0;
-        virtual auto visit(conditional<UnaryExpr>&)  -> void = 0;
+        virtual auto visit(conditional<BinaryExpr>&)  -> void = 0;
+        virtual auto visit(conditional<BoolExpr>&)    -> void = 0;
+        virtual auto visit(conditional<IntegerExpr>&) -> void = 0;
+        virtual auto visit(conditional<UnaryExpr>&)   -> void = 0;
     };
 
     template<typename Derived>
