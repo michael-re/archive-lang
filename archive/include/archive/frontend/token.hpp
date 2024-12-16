@@ -35,6 +35,32 @@ namespace archive::frontend
 
     enum class Token::Type
     {
+        // symbol: punctuations/operators
+        SingleAmpersand,    // &
+        DoubleAmpersand,    // &&
+        Bang,               // !
+        BangEqual,          // !=
+        Caret,              // ^
+        SingleEqual,        // =
+        DoubleEqual,        // ==
+        SingleGreater,      // >
+        DoubleGreater,      // >>
+        GreaterEqual,       // >=
+        SingleLess,         // <
+        DoubleLess,         // <<
+        LessEqual,          // <=
+        SingleMinus,        // -
+        DoubleMinus,        // --
+        SinglePercent,      // %
+        DoublePercent,      // %%
+        SinglePlus,         // +
+        DoublePlus,         // ++
+        Slash,              // /
+        Star,               // *
+        Tilde,              // ~
+        SingleVBar,         // |
+        DoubleVBar,         // ||
+
         // for internal use only
         Unknown,
         Error,

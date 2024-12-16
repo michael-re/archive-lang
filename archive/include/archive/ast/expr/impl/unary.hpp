@@ -16,9 +16,15 @@ namespace archive::ast
         public:
             using Token = archive::frontend::Token;
             enum class Type;
+            struct Prefix{};
+            struct Postfix{};
 
         public:
             explicit Operator(Token token);
+
+            auto make_postfix() -> Operator&;
+            auto make_prefix () -> Operator&;
+
             [[nodiscard]] auto type()  const -> Type;
             [[nodiscard]] auto token() const -> const Token&;
 
@@ -39,15 +45,19 @@ namespace archive::ast
 
     enum class UnaryExpr::Operator::Type
     {
-        // arithmetic
-        Pls,    // unary plus     (returns the given value)
-        Neg,    // unary negation (negatives the given value)
+        // arithmetic (addition)
+        Add,        // (+)  unary plus
+        PostAdd,    // (++) postfix addition
+        PreAdd,     // (++) prefix addition
 
-        // logical
-        Lnot,    // logical not
+        // arithmetic (subtraction)
+        Sub,        // (-)  unary minus
+        PostSub,    // (--) postfix subtract
+        PreSub,     // (--) postfix subtract
 
-        // bitwise
-        Bnot,   // bitwise not
+        // negation (not)
+        Lnot,       // (!) logical not
+        Bnot,       // (~) bitwise not
     };
 } // namespace archive::ast
 

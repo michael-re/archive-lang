@@ -42,29 +42,31 @@ namespace archive::ast
     enum class BinaryExpr::Operator::Type
     {
         // arithmetic
-        Add,    // addition
-        Sub,    // subtraction
-        Mul,    // multiplication
-        Div,    // division
-        Rem,    // remainder
-        Mod,    // modulo
+        Add,    // (+)  addition
+        Div,    // (/)  division
+        Mod,    // (%%) modulo
+        Mul,    // (*)  multiplication
+        Rem,    // (%)  remainder
+        Sub,    // (-)  subtraction
 
         // relational
-        Ceq,    // compare equal
-        Cnq,    // compare not equal
-        Cge,    // compare greater equal
-        Cgt,    // compare greater than
-        Cle,    // compare less equal
-        Clt,    // compare less than
+        Ceq,    // (==) compare equal
+        Cge,    // (>=) compare greater equal
+        Cgt,    // (>)  compare greater than
+        Cle,    // (<=) compare less equal
+        Clt,    // (<)  compare less than
+        Cnq,    // (!=) compare not equal
 
         // logical
-        Land,   // logical and
-        Lor,    // logical or
+        Land,   // (&&) logical and
+        Lor,    // (||) logical or  (&)
 
         // bitwise
-        Band,   // bitwise and
-        Bor,    // bitwise or  (inclusive or)
-        Bxor,   // bitwise xor (exclusive or)
+        Band,   // (&)  bitwise and
+        Bor,    // (|)  bitwise or  (inclusive or)
+        Bxor,   // (^)  bitwise xor (exclusive or)
+        Bls,    // (<<) bitwise left shift
+        Brs,    // (>>) bitwise right shift
     };
 } // namespace archive::ast
 

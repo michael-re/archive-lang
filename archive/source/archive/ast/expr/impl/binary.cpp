@@ -31,7 +31,38 @@ BinaryExpr::Operator::Operator(Token token)
     : m_type (Type::Add),
       m_token(std::move(token))
 {
-    FATAL("method not yet implemented");
+    switch (m_token.type())
+    {
+        // arithmetic
+        case Token::Type::SinglePlus:      m_type = Type::Add; break;
+        case Token::Type::Slash:           m_type = Type::Div; break;
+        case Token::Type::DoublePercent:   m_type = Type::Mod; break;
+        case Token::Type::Star:            m_type = Type::Mul; break;
+        case Token::Type::SinglePercent:   m_type = Type::Rem; break;
+        case Token::Type::SingleMinus:     m_type = Type::Sub; break;
+
+        // relational
+        case Token::Type::DoubleEqual:     m_type = Type::Ceq; break;
+        case Token::Type::GreaterEqual:    m_type = Type::Cge; break;
+        case Token::Type::SingleGreater:   m_type = Type::Cgt; break;
+        case Token::Type::LessEqual:       m_type = Type::Cle; break;
+        case Token::Type::SingleLess:      m_type = Type::Clt; break;
+        case Token::Type::BangEqual:       m_type = Type::Cnq; break;
+
+        // logical
+        case Token::Type::DoubleAmpersand: m_type = Type::Land; break;
+        case Token::Type::DoubleVBar:      m_type = Type::Lor;  break;
+
+        // bitwise
+        case Token::Type::SingleAmpersand: m_type = Type::Band; break;
+        case Token::Type::SingleVBar:      m_type = Type::Bor;  break;
+        case Token::Type::Caret:           m_type = Type::Bxor; break;
+        case Token::Type::DoubleLess:      m_type = Type::Bls;  break;
+        case Token::Type::DoubleGreater:   m_type = Type::Brs;  break;
+
+        // error
+        default: FATAL("unsupported binary operator");
+    }
 }
 
 auto BinaryExpr::Operator::type() const -> Type
