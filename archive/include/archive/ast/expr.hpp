@@ -10,6 +10,7 @@
 
 // ==== IMPL ====
 #include "archive/ast/expr/impl/binary.hpp"
+#include "archive/ast/expr/impl/unary.hpp"
 // ==== IMPL ====
 
 #endif // ARCHIVE_AST_EXPR_HPP
