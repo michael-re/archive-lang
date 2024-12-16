@@ -44,7 +44,10 @@ namespace archive::ast
         Neg,    // unary negation (negatives the given value)
 
         // logical
-        Not,    // logical not
+        Lnot,    // logical not
+
+        // bitwise
+        Bnot,   // bitwise not
     };
 } // namespace archive::ast
 
