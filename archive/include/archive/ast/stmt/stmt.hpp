@@ -38,11 +38,7 @@ namespace archive::ast
         explicit BaseVisitor() = default;
         virtual ~BaseVisitor() = default;
 
-        template<typename Node>
-        auto visit(conditional<Node>&) -> void
-        {
-            FATAL("placeholder method");
-        }
+        virtual auto visit(const conditional<ExpressionStmt>&) -> void = 0;
     };
 
     template<typename Derived>

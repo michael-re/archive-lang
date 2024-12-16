@@ -12,6 +12,7 @@
 namespace archive::ast
 {
     class Stmt;
+    class ExpressionStmt;
 
     using stmt_ptr = std::unique_ptr<Stmt>;
     using stmt_vec = std::vector<stmt_ptr>;
