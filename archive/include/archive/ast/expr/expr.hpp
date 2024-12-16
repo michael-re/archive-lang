@@ -39,6 +39,7 @@ namespace archive::ast
         virtual ~BaseVisitor() = default;
 
         virtual auto visit(conditional<BinaryExpr>&) -> void = 0;
+        virtual auto visit(conditional<BoolExpr>&)   -> void = 0;
         virtual auto visit(conditional<UnaryExpr>&)  -> void = 0;
     };
 

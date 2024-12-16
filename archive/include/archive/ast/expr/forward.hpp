@@ -13,6 +13,7 @@ namespace archive::ast
 {
     class Expr;
     class BinaryExpr;
+    class BoolExpr;
     class UnaryExpr;
 
     using expr_ptr = std::unique_ptr<Expr>;
