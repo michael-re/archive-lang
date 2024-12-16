@@ -11,6 +11,7 @@
 // ==== IMPL ====
 #include "archive/ast/expr/impl/binary.hpp"
 #include "archive/ast/expr/impl/bool.hpp"
+#include "archive/ast/expr/impl/char.hpp"
 #include "archive/ast/expr/impl/float.hpp"
 #include "archive/ast/expr/impl/integer.hpp"
 #include "archive/ast/expr/impl/unary.hpp"
