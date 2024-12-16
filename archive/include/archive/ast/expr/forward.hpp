@@ -14,6 +14,7 @@ namespace archive::ast
     class Expr;
     class BinaryExpr;
     class BoolExpr;
+    class FloatExpr;
     class IntegerExpr;
     class UnaryExpr;
 
