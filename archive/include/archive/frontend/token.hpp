@@ -64,7 +64,8 @@ namespace archive::frontend
         DoubleMinus,        // --
         LeftParen,          // (
         RightParen,         // )
-        Percent,            // %
+        SinglePercent,      // %
+        DoublePercent,      // %%
         SinglePlus,         // +
         DoublePlus,         // ++
         Question,           // ?
@@ -77,11 +78,12 @@ namespace archive::frontend
         DoubleVBar,         // ||
 
         // literals
-        Character,
-        Float,
         Identifier,
-        Integer,
-        String,
+        CharacterLiteral,
+        FloatLiteral,
+        IntegerLiteral,
+        NumberLiteral,
+        StringLiteral,
 
         // keywords
         As,
@@ -120,7 +122,6 @@ namespace archive::frontend
         I16,
         I32,
         I64,
-        I128,
         Isz,
 
         // unsigned integer types
@@ -128,15 +129,11 @@ namespace archive::frontend
         U16,
         U32,
         U64,
-        U128,
         Usz,
 
         // floating point types
-        F16,
         F32,
         F64,
-        F80,
-        F128,
 
         // for internal use only
         Unknown,
