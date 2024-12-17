@@ -3,11 +3,6 @@
 using namespace archive;
 using namespace archive::frontend;
 
-Token::Token()
-    : Token(Type::Unknown)
-{
-}
-
 Token::Token(Type type)
     : Token(type, { 1, 1 })
 {
