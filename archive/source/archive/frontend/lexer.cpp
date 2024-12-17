@@ -14,7 +14,7 @@ Lexer::Lexer(std::string filename, std::string source)
 
 auto Lexer::lex() -> Lexer&
 {
-    if (m_current != Token::Type::EndOfFile)
+    if (m_previous != Token::Type::EndOfFile)
     {
         m_previous = std::move(m_current);
         m_current  = std::move(m_next);
