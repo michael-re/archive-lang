@@ -8,7 +8,7 @@
 
 namespace archive::frontend
 {
-    class Scanner
+    class Scanner final
     {
     public:
         explicit Scanner(std::string filename, std::string source);
@@ -16,7 +16,7 @@ namespace archive::frontend
         [[nodiscard]] auto scan()         -> Token;
         [[nodiscard]] auto source() const -> const Source&;
 
-    public:
+    private:
         Source m_source;
     };
 } // namespace archive::frontend
