@@ -16,7 +16,6 @@ namespace archive::frontend
         enum class Type;
 
     public:
-        Token();
         Token(Type type);
         Token(Type type, Location location);
         Token(Type type, Location location, std::string lexeme);

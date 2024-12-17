@@ -20,14 +20,11 @@ auto archive::run(std::string filename) -> int
         return exit_code::io_error;
     }
 
-    // TODO: implement parse -> resolve -> compile/interpret
-    auto scanner = frontend::Scanner(filename, fmt::to_string(file.rdbuf()));
-    auto token   = scanner.scan();
-
-    while (token != frontend::Token::Type::EndOfFile)
+    auto lexer = frontend::Lexer(filename, fmt::to_string(file.rdbuf()));
+    while (lexer.peek_curr() != frontend::Token::Type::EndOfFile)
     {
-        fmt::println(std::cout, "{}", token.lexeme());
-        token = scanner.scan();
+        fmt::println(std::cout, "{}", lexer.peek_curr().lexeme());
+        lexer.lex();
     }
 
     return exit_code::success;
