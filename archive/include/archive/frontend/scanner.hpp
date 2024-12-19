@@ -24,8 +24,9 @@ namespace archive::frontend
 
     private:
         std::unique_ptr<Source>  m_source;
-        std::unique_ptr<Scanlet> m_whitespace;
+        std::unique_ptr<Scanlet> m_identifier;
         std::unique_ptr<Scanlet> m_punctuation;
+        std::unique_ptr<Scanlet> m_whitespace;
     };
 } // namespace archive::frontend
 
