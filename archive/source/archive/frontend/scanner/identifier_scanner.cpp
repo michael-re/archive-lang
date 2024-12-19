@@ -1,6 +1,6 @@
 #include <unordered_map>
 
-#include "archive/frontend/scanner/identifier_scanlet.hpp"
+#include "archive/frontend/scanner/identifier_scanner.hpp"
 #include "archive/common/utility.hpp"
 #include "archive/common/assert.hpp"
 
@@ -8,12 +8,12 @@ using namespace archive;
 using namespace archive::frontend;
 using namespace archive::frontend::detail::scanner;
 
-auto IdentifierScanlet::candidate(Source& source) const -> bool
+auto IdentifierScanner::candidate(const Source& source) const -> bool
 {
     return source.is_alpha();
 }
 
-auto IdentifierScanlet::scan(Source& source) const -> Token
+auto IdentifierScanner::scan(Source& source) const -> Token
 {
     ASSERT(candidate(source), "invalid identifier candidate");
     auto location = source.location();
@@ -22,7 +22,7 @@ auto IdentifierScanlet::scan(Source& source) const -> Token
     return { type, location, std::move(name) };
 }
 
-auto IdentifierScanlet::identifier_name(Source& source) -> std::string
+auto IdentifierScanner::identifier_name(Source& source) -> std::string
 {
     auto name = std::string();
     while (source.is_alpha() || source.is_digit())
@@ -30,7 +30,7 @@ auto IdentifierScanlet::identifier_name(Source& source) -> std::string
     return name;
 }
 
-auto IdentifierScanlet::identifier_type(std::string_view name) -> Token::Type
+auto IdentifierScanner::identifier_type(std::string_view name) -> Token::Type
 {
     static const auto keywords = std::unordered_map<std::string_view, Token::Type>
     {

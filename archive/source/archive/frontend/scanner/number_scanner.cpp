@@ -1,4 +1,4 @@
-#include "archive/frontend/scanner/number_scanlet.hpp"
+#include "archive/frontend/scanner/number_scanner.hpp"
 #include "archive/common/utility.hpp"
 #include "archive/common/assert.hpp"
 #include "archive/common/format.hpp"
@@ -7,20 +7,20 @@ using namespace archive;
 using namespace archive::frontend;
 using namespace archive::frontend::detail::scanner;
 
-auto NumberScanlet::candidate(Source& source) const -> bool
+auto NumberScanner::candidate(const Source& source) const -> bool
 {
     return source.is_digit();
 }
 
-auto NumberScanlet::scan(Source& source) const -> Token
+auto NumberScanner::scan(Source& source) const -> Token
 {
     ASSERT(candidate(source), "invalid number literal candidate");
-    if (source.peek("0b") || source.peek("0B")) return bin_num(source);
-    if (source.peek("0x") || source.peek("0X")) return hex_num(source);
-    return dec_num(source);
+    if (source.peek("0b") || source.peek("0B")) return bin_literal(source);
+    if (source.peek("0x") || source.peek("0X")) return hex_literal(source);
+    return dec_literal(source);
 }
 
-auto NumberScanlet::bin_num(Source& source) -> Token
+auto NumberScanner::bin_literal(Source& source) -> Token
 {
     static constexpr auto prefix     = std::string_view("0b");
     static constexpr auto min_digits = prefix.size();
@@ -46,7 +46,7 @@ auto NumberScanlet::bin_num(Source& source) -> Token
     return { type, location, std::move(number) };
 }
 
-auto NumberScanlet::dec_num(Source& source) -> Token
+auto NumberScanner::dec_literal(Source& source) -> Token
 {
     const auto location  = source.location();
     ASSERT(source.is_dec_digit(), "invalid decimal number candidate");
@@ -96,7 +96,7 @@ auto NumberScanlet::dec_num(Source& source) -> Token
     return { type, location, std::move(number) };
 }
 
-auto NumberScanlet::hex_num(Source& source) -> Token
+auto NumberScanner::hex_literal(Source& source) -> Token
 {
     static constexpr auto prefix     = std::string_view("0x");
     static constexpr auto min_digits = prefix.size();
@@ -122,7 +122,7 @@ auto NumberScanlet::hex_num(Source& source) -> Token
     return { type, location, std::move(number) };
 }
 
-auto NumberScanlet::read_bin_digits(Source& source) -> std::string
+auto NumberScanner::read_bin_digits(Source& source) -> std::string
 {
     auto digits = std::string();
     while (source.peek('_') || source.is_bin_digit())
@@ -131,7 +131,7 @@ auto NumberScanlet::read_bin_digits(Source& source) -> std::string
     return digits;
 }
 
-auto NumberScanlet::read_dec_digits(Source& source) -> std::string
+auto NumberScanner::read_dec_digits(Source& source) -> std::string
 {
     auto digits = std::string();
     while (source.peek('_') || source.is_dec_digit())
@@ -140,7 +140,7 @@ auto NumberScanlet::read_dec_digits(Source& source) -> std::string
     return digits;
 }
 
-auto NumberScanlet::read_hex_digits(Source& source) -> std::string
+auto NumberScanner::read_hex_digits(Source& source) -> std::string
 {
     auto digits = std::string();
     while (source.peek('_') || source.is_hex_digit())
@@ -149,14 +149,14 @@ auto NumberScanlet::read_hex_digits(Source& source) -> std::string
     return digits;
 }
 
-auto NumberScanlet::remove_leading_zeros(std::string number) -> std::string
+auto NumberScanner::remove_leading_zeros(std::string number) -> std::string
 {
     while (number.size() >= 2 && number.front() == '0')
         number.erase(number.begin());
     return number;
 }
 
-auto NumberScanlet::remove_trailing_zeros(std::string number) -> std::string
+auto NumberScanner::remove_trailing_zeros(std::string number) -> std::string
 {
     while (number.size() >= 2 && number.front() == '0')
         number.erase(number.begin());

@@ -3,16 +3,21 @@
 #ifndef ARCHIVE_FRONTEND_LEXER_HPP
 #define ARCHIVE_FRONTEND_LEXER_HPP
 
+#include <memory>
 #include <string>
 #include <optional>
 
-#include "archive/frontend/scanner.hpp"
+#include "archive/frontend/scanner/scanner.hpp"
 #include "archive/frontend/token.hpp"
 
 namespace archive::frontend
 {
     class Lexer final
     {
+    public:
+        using Source  = archive::frontend::Source;
+        using Scanner = archive::frontend::detail::scanner::Scanner;
+
     public:
         explicit Lexer(std::string filename, std::string source);
 
@@ -25,10 +30,15 @@ namespace archive::frontend
         [[nodiscard]] auto peek_next() const -> const Token&;
 
     private:
-        Scanner              m_scanner;
-        std::optional<Token> m_previous;
-        std::optional<Token> m_current;
-        std::optional<Token> m_next;
+        Token  m_prev_token;
+        Token  m_curr_token;
+        Token  m_next_token;
+        Source m_source;
+
+        std::unique_ptr<Scanner> m_identifier;
+        std::unique_ptr<Scanner> m_number;
+        std::unique_ptr<Scanner> m_punctuation;
+        std::unique_ptr<Scanner> m_whitespace;
     };
 } // namespace archive::frontend
 

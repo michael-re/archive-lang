@@ -1,16 +1,16 @@
-#include "archive/frontend/scanner/punctuation_scanlet.hpp"
+#include "archive/frontend/scanner/punctuation_scanner.hpp"
 #include "archive/common/format.hpp"
 
 using namespace archive;
 using namespace archive::frontend;
 using namespace archive::frontend::detail::scanner;
 
-auto PunctuationScanlet::candidate(Source&) const -> bool
+auto PunctuationScanner::candidate(const Source&) const -> bool
 {
     return true;
 }
 
-auto PunctuationScanlet::scan(Source& source) const -> Token
+auto PunctuationScanner::scan(Source& source) const -> Token
 {
     const auto location = source.location();
     if (source.at_end())

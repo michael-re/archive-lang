@@ -1,18 +1,18 @@
-#include "archive/frontend/scanner/whitespace_scanlet.hpp"
+#include "archive/frontend/scanner/whitespace_scanner.hpp"
 #include "archive/common/utility.hpp"
 
 using namespace archive;
 using namespace archive::frontend;
 using namespace archive::frontend::detail::scanner;
 
-auto WhitespaceScanlet::candidate(Source& source) const -> bool
+auto WhitespaceScanner::candidate(const Source& source) const -> bool
 {
     return is_nonprintable_char (source)
         || is_singleline_comment(source)
         || is_multiline_comment (source);
 }
 
-auto WhitespaceScanlet::scan(Source& source) const -> Token
+auto WhitespaceScanner::scan(Source& source) const -> Token
 {
     while (candidate(source))
     {
@@ -37,17 +37,17 @@ auto WhitespaceScanlet::scan(Source& source) const -> Token
          : Token(Token::Type::Empty,     source.location());
 }
 
-auto WhitespaceScanlet::is_singleline_comment(Source& source) -> bool
+auto WhitespaceScanner::is_singleline_comment(const Source& source) -> bool
 {
     return !source.at_end() && source.peek("//");
 }
 
-auto WhitespaceScanlet::is_multiline_comment(Source& source) -> bool
+auto WhitespaceScanner::is_multiline_comment(const Source& source) -> bool
 {
     return !source.at_end() && source.peek("/*");
 }
 
-auto WhitespaceScanlet::is_nonprintable_char(Source& source) -> bool
+auto WhitespaceScanner::is_nonprintable_char(const Source& source) -> bool
 {
     return !source.at_end() && source.peek() <= 0x20;
 }

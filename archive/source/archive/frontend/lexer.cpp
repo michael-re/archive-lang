@@ -1,24 +1,44 @@
 #include "archive/frontend/lexer.hpp"
 #include "archive/common/assert.hpp"
+#include "archive/common/utility.hpp"
+
+#include "archive/frontend/scanner/identifier_scanner.hpp"
+#include "archive/frontend/scanner/number_scanner.hpp"
+#include "archive/frontend/scanner/punctuation_scanner.hpp"
+#include "archive/frontend/scanner/whitespace_scanner.hpp"
 
 using namespace archive;
 using namespace archive::frontend;
+using namespace archive::frontend::detail::scanner;
 
 Lexer::Lexer(std::string filename, std::string source)
-    : m_scanner (std::move(filename), std::move(source)),
-      m_previous(std::nullopt),
-      m_current (m_scanner.scan()),
-      m_next    (m_scanner.scan())
+    : m_prev_token (Token::Type::Empty),
+      m_curr_token (Token::Type::Empty),
+      m_next_token (Token::Type::Empty),
+      m_source     (std::move(filename), std::move(source)),
+      m_identifier (std::make_unique<IdentifierScanner>()),
+      m_number     (std::make_unique<NumberScanner>()),
+      m_punctuation(std::make_unique<PunctuationScanner>()),
+      m_whitespace (std::make_unique<WhitespaceScanner>())
 {
+    lex();
 }
 
 auto Lexer::lex() -> Lexer&
 {
-    if (m_previous != Token::Type::EndOfFile)
+    if (m_prev_token != Token::Type::EndOfFile)
     {
-        m_previous = std::move(m_current);
-        m_current  = std::move(m_next);
-        m_next     = m_scanner.scan();
+        const auto scan = [this]() -> Token
+        {
+            if (m_whitespace->candidate(m_source)) utility::ignore(m_whitespace->scan(m_source));
+            if (m_identifier->candidate(m_source)) return m_identifier->scan(m_source);
+            if (m_number->candidate(m_source))     return m_number->scan(m_source);
+            return m_punctuation->scan(m_source);
+        };
+
+        m_prev_token = std::move(m_curr_token);
+        m_curr_token = std::move(m_next_token);
+        m_next_token = scan();
     }
 
     return *this;
@@ -36,18 +56,15 @@ auto Lexer::consume() -> const Token&
 
 auto Lexer::peek_prev() const -> const Token&
 {
-    ASSERT(m_previous, "trying to access previous token when it does not exist");
-    return *m_previous;
+    return m_prev_token;
 }
 
 auto Lexer::peek_curr()  const -> const Token&
 {
-    ASSERT(m_current, "trying to access current token when it does not exist");
-    return *m_current;
+    return m_curr_token;
 }
 
 auto Lexer::peek_next() const -> const Token&
 {
-    ASSERT(m_next, "trying to access next token when it does not exist");
-    return *m_next;
+    return m_next_token;
 }

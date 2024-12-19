@@ -15,7 +15,6 @@
 // frontend
 #include "archive/frontend/lexer.hpp"
 #include "archive/frontend/location.hpp"
-#include "archive/frontend/scanner.hpp"
 #include "archive/frontend/source.hpp"
 #include "archive/frontend/token.hpp"
 
