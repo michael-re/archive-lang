@@ -10,7 +10,7 @@ using namespace archive::frontend::detail::scanner;
 
 auto IdentifierScanlet::candidate(Source& source) const -> bool
 {
-    return !source.at_end() && utility::is_alpha(*source.peek());
+    return source.is_alpha();
 }
 
 auto IdentifierScanlet::scan(Source& source) const -> Token
@@ -24,13 +24,9 @@ auto IdentifierScanlet::scan(Source& source) const -> Token
 
 auto IdentifierScanlet::identifier_name(Source& source) -> std::string
 {
-    using utility::is_alpha;
-    using utility::is_digit;
-
     auto name = std::string();
-    while (!source.at_end() && (is_alpha(*source.peek()) || is_digit(*source.peek())))
+    while (source.is_alpha() || source.is_digit())
         name += *source.consume();
-
     return name;
 }
 
@@ -89,7 +85,5 @@ auto IdentifierScanlet::identifier_type(std::string_view name) -> Token::Type
         { "f64",      Token::Type::F64      },
     };
 
-    return keywords.contains(name)
-         ? keywords.at(name)
-         : Token::Type::Identifier;
+    return keywords.contains(name) ? keywords.at(name) : Token::Type::Identifier;
 }

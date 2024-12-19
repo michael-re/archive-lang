@@ -33,6 +33,31 @@ auto Source::at_end() const -> bool
     return m_cursor >= m_source_view.size();
 }
 
+auto Source::is_alpha() const -> bool
+{
+    return !at_end() && utility::is_alpha(*peek());
+}
+
+auto Source::is_digit() const -> bool
+{
+    return !at_end() && utility::is_digit(*peek());
+}
+
+auto Source::is_bin_digit() const -> bool
+{
+    return !at_end() && utility::is_bin_digit(*peek());
+}
+
+auto Source::is_dec_digit() const -> bool
+{
+    return !at_end() && utility::is_dec_digit(*peek());
+}
+
+auto Source::is_hex_digit() const -> bool
+{
+    return !at_end() && utility::is_hex_digit(*peek());
+}
+
 auto Source::peek() const -> std::optional<char>
 {
     return at_end()

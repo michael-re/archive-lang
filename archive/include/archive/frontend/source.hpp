@@ -21,6 +21,12 @@ namespace archive::frontend
         [[nodiscard]] auto filetext() const -> const std::string&;
         [[nodiscard]] auto at_end()   const -> bool;
 
+        [[nodiscard]] auto is_alpha()     const -> bool;
+        [[nodiscard]] auto is_digit()     const -> bool;
+        [[nodiscard]] auto is_bin_digit() const -> bool;
+        [[nodiscard]] auto is_dec_digit() const -> bool;
+        [[nodiscard]] auto is_hex_digit() const -> bool;
+
         [[nodiscard]] auto peek()                       const -> std::optional<char>;
         [[nodiscard]] auto peek(const char)             const -> std::optional<char>;
         [[nodiscard]] auto peek(const std::string_view) const -> std::optional<std::string_view>;

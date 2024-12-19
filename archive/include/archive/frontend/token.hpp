@@ -82,7 +82,6 @@ namespace archive::frontend
         CharacterLiteral,
         FloatLiteral,
         IntegerLiteral,
-        NumberLiteral,
         StringLiteral,
 
         // keywords
